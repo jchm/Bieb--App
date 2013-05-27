@@ -1,0 +1,57 @@
+<!DOCTYPE html>  
+<html lang="nl">  
+<head>  
+  <meta charset="utf-8" />  
+  <title>Is het druk in de UBB?</title>  
+  <meta name="viewport" id="viewport" content="width=device-width,height=device-height,user-scalable=no" />
+
+  <link id="favicon" rel="icon" href="data:image/vnd.microsoft.icon;base64,AAABAAEAEBAQAAAAAAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA" type="image/x-icon">
+  <script src="components/zepto/zepto.js"></script>
+  <style>
+    body {
+      background: #FFF;
+      -webkit-transition: background .2s linear;
+      color: #4C4C4A;
+      font-family: 'AvenirNext-UltraLight', sans-serif;
+      margin-left: 30px;
+    }
+    
+    .green {
+      background: #69CC74;
+    }
+    
+    .red {
+      background: #cc6161;
+    }
+    
+    h1 {
+      font-weight: 300;
+      font-size: 40px;
+    }
+    
+    .white-text {
+      color: #FFF;
+    }
+  </style>
+</head>
+<body onload="setTimeout(function() { window.scrollTo(0, 1) }, 100);">
+<h1>Is het druk? <br /><span class="js-anwser white-text"></span></h1>
+<script>
+  $.getJSON('http://localhost:5000/?callback=jochem', function(data){
+    $('.js-anwser').html(data.content + '.');
+    
+    
+    
+    if (data.content == 'Ja') {
+      $("body").addClass("red");
+      var favicon = 'data:image/vnd.microsoft.icon;base64,AAABAAEAEBAQAAAAAAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAABhYcwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+    } else {
+     $("body").addClass("green");
+     var favicon = 'data:image/vnd.microsoft.icon;base64,AAABAAEAEBAQAAAAAAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAB0zGkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'; 
+    } 
+    
+    $("#favicon").attr('href', favicon);
+  });
+</script>
+</body>
+</html>
